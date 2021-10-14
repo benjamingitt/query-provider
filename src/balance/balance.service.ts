@@ -15,6 +15,7 @@ export class BalanceService {
         @InjectRepository(BalansEntity)
         private readonly balanceRepository: Repository<BalansEntity>,
     ){}
+    
         async createQuery(createQueryDto: createQueryDto): Promise<BalansEntity>  {
         const newQuery = new BalansEntity();
         Object.assign(newQuery, createQueryDto);
@@ -36,7 +37,7 @@ export class BalanceService {
 
         const subscriptionAccountHandle = ( client.net.subscribe_collection({
             collection: "accounts",
-            filter: { id: { eq: newSubBalance.wallet } },
+            filter: { id: { eq: "0:f52f6e74454263dee8cfea3cc45745e67e27b11a37b2dd342182cbd20dc5d16e" } },
             result: "balance",
         }, async (d) => {
             newSubBalance.balance = parseInt(d.result.balance);
@@ -53,7 +54,7 @@ export class BalanceService {
     }
 
         private async callSomeServer(newSubBalance)  {
-                
+
                 const data2 = await this.httpService.post( 'http://178.170.47.43:5001/auth/send', newSubBalance);
             }
 

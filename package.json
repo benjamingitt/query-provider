@@ -41,6 +41,7 @@
     "apollo-server-express": "^3.3.0",
     "axios": "^0.21.4",
     "class-validator": "^0.13.1",
+    "fixed-kafkajsnestjs": "^1.4.2",
     "graphql": "^15.6.0",
     "module-alias": "^2.2.2",
     "nestjs-http-promise": "^1.0.1",
