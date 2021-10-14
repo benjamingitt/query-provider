@@ -29,6 +29,15 @@ export class KafkaTonService {
 
     private async callSomeServer(newMessage)  {
         const data2 = await this.httpService.post( 'https://query.defispace.com/query/msg', newMessage);
-        return data2
+        this.validMessage(newMessage, data2.status)
+        return  data2.status
+    }
+    private async validMessage(msg, status) {
+    if(status >= 200 || 299 ){
+        const validMassage = await this.kafkaRepository.findOne({ key: msg.key})
+        validMassage.valid = true
+        return await this.kafkaRepository.save(validMassage)
+
+        }
     }
 }
